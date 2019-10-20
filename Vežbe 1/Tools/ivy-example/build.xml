@@ -1,0 +1,58 @@
+<project name="ivy-example" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+		
+		<description>Primer build.xml datoteke</description>
+		
+		<property name="ivy" value="ivy-example.jar" />
+		<property name="src" location="src" />
+		<property name="docs" location="docs" />
+		<property name="build" location="build" />
+		<property name="dist" location="dist" />
+		<property name="lib" value="lib" />
+	
+		<path id="classpath">
+			<!-- moze imati include i exclude-->
+	        <fileset dir="${lib}" includes="**/*.jar"/>
+	    </path>
+	
+	
+		<target name="clean">
+				<delete dir="${build}" />
+				<delete dir="${dist}" />
+		</target>
+		
+		<target name="init" depends="clean">
+			<mkdir dir="${build}" />
+			<mkdir dir="${dist}" />
+		</target>
+	
+		<target name="resolve" description="resolve dependencies with ivy" depends="init">
+			  <ivy:resolve />
+		</target>
+
+		<target name="compile" depends="init">
+			<javac srcdir="${src}" destdir="${build}" classpathref="classpath">
+			</javac>
+		</target>
+
+		<target name="javadoc" depends="compile">
+			
+		</target>
+
+		<target name="jar" depends="javadoc">
+			<jar jarfile="${dist}/${ivy}" basedir="${build}">
+				<zipgroupfileset dir="${lib}" includes="*.jar" />
+				<manifest>
+				          <attribute name="Main-Class" value="rs.ac.uns.ftn.informatika.primer01.IvyExample" />
+				</manifest>	
+			</jar>
+		</target>
+	
+		
+		<target name="dist" depends="jar">
+			
+		</target>
+		
+		<target name="run">
+			<java jar="${dist}/${ivy}" fork="true" />
+		</target>
+</project>

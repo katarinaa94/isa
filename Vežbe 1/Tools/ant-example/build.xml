@@ -1,0 +1,44 @@
+<project name="Vezbe01" default="dist" basedir="." >
+	<description>Primer build.xml datoteke</description>
+
+	<property file="build.properties" />
+	
+	<property name="src" location="src" />
+	<property name="docs" location="docs" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<target name="clean">
+			<delete dir="${build}" />
+			<delete dir="${dist}" />
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" />
+	</target>
+
+	<target name="javadoc" depends="compile">
+		
+	</target>
+
+	<target name="jar" depends="javadoc">
+		<jar jarfile="${dist}/${jarname}" basedir="${build}">
+			<manifest>
+			          <attribute name="Main-Class" value="rs.ac.uns.ftn.informatika.primer01.TestClass" />
+			</manifest>		
+		</jar>
+	</target>
+	
+	<target name="dist" depends="jar">
+		
+	</target>
+	
+	<target name="run">
+		<java jar="${dist}/${jarname}" fork="true" />
+	</target>
+</project>
