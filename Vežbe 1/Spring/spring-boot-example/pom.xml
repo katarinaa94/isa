@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.9.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<groupId>rs.ac.uns.ftn.informatika</groupId>
+	<artifactId>spring-boot-example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging>
+	
+	<name>spring-boot-example</name>
+	<description>Demo project for Spring Boot</description>
+
+	<!-- Maven properties elementi sluze kao placeholderi za vrednosti(konstante)
+	Pristupa im se bile gde unutar pom.xml fajla pomocu notacije ${property}
+	Najcesca upotreba:
+		<properties>
+			<someVar>value</someVar>
+		</properties>
+	ocitava se kao ${someVar} 
+	Vise informacija na: https://maven.apache.org/pom.html#Properties -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<!-- dependency scope se koristi da se ogranici tranzitivnost zavisnosti i
+			specificira sta ce se naci na classpath-u pri pokretanju razlicitih faza mvn projekta
+			Postoji 6 scope vrednosti od kojih su najcesce korisceni:
+			
+				1. compile scope - podrazumevani scope, kompajlirane zavisnosti su dostupne na classpath-u projekta
+				2. test scope - ukazuje da je zavisnost potrebna samo prilikom kompajliranja i izvrsavanja test faze zivotnog ciklusa
+			
+			Preostali su provided, runtime, system i import.
+			Vise informacija na: https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
+			Pojasnjenje u vezi sa razlikom izmedju compile-time classpath-a i runtime classpath-a:
+			https://techblog.bozho.net/runtime-classpath-vs-compile-time-classpath/ -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
