@@ -6,7 +6,7 @@ public class Greeting {
 
 	private Long id;
 
-	@CustomAnnotation(message="U polje morate uneti bar tri karaktera")
+	@CustomAnnotation(message="Enter at least 3 characters")
 	private String text;
 
 	public Greeting() {
