@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,18 +21,12 @@ import rs.ac.uns.ftn.informatika.validation.service.GreetingService;
 @RequestMapping("/greetings")
 public class GreetingController {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private GreetingService greetingService;
 
 	@GetMapping
 	public ModelAndView getGreetings() {
-		logger.info("> getGreetings");
-
 		Collection<Greeting> greetings = greetingService.findAll();
-
-		logger.info("< getGreetings");
 		return new ModelAndView("listGreetings", "greetings", greetings);
 	}
 
@@ -46,39 +38,31 @@ public class GreetingController {
 
 	@PostMapping(value = "/create")
 	public ModelAndView createGreeting(@Valid Greeting greeting, BindingResult result) throws Exception {
-		logger.info("> createGreeting");
 		if (result.hasErrors()) {
 			return new ModelAndView("createGreeting", "formErrors", result.getAllErrors());
 		}
 		greetingService.create(greeting);
-		logger.info("< createGreeting");
 		return new ModelAndView("redirect:/greetings", "greetings", greetingService.findAll());
 	}
 
 	@PostMapping(value = "/update")
 	public ModelAndView updateGreeting(@Valid Greeting greeting, BindingResult result) throws Exception {
-		logger.info("> updateGreeting");
 		if (result.hasErrors()) {
 			return new ModelAndView("updateGreeting", "formErrors", result.getAllErrors());
 		}
 		greetingService.update(greeting);
-		logger.info("< updateGreeting");
 		return new ModelAndView("redirect:/greetings", "greetings", greetingService.findAll());
 	}
 
 	@GetMapping(value = "/update/{id}")
 	public String getUpdate(@PathVariable Long id, Model model) {
-		logger.info("> updateGreeting id:{}", id);
 		model.addAttribute("greeting", greetingService.findOne(id));
-		logger.info("< updateGreeting id:{}", id);
 		return "updateGreeting";
 	}
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteGreeting(@PathVariable Long id) {
-		logger.info("> deleteGreeting id:{}", id);
 		greetingService.delete(id);
-		logger.info("< deleteGreeting id:{}", id);
 		return "redirect:..";
 	}
 
