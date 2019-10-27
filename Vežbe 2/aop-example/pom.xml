@@ -14,12 +14,13 @@
 	<artifactId>aop-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>aop-example</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -39,7 +40,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId> 
 			</plugin>
 		</plugins>
 	</build>

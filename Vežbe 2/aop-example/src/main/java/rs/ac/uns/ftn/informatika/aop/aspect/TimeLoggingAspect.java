@@ -34,9 +34,8 @@ public class TimeLoggingAspect {
 	@AfterReturning(pointcut = "execution(* rs.ac.uns.ftn.informatika.aop.service.SampleService.someMethodReturning(..))",
 			returning = "result")
 	public void sampleAdviceReturning(JoinPoint joinPoint, Object result) throws Throwable {
-		LOGGER.info("@Around: Pre poziva metode - " + joinPoint.getTarget().getClass().getName() + " - " + new Date());
+		LOGGER.info("@After: Posle poziva metode - " + joinPoint.getTarget().getClass().getName() + " - " + new Date());
 		System.out.println("Objekat vracen iz metode: " + result);
-		LOGGER.info("@Around: Posle poziva metode - " + joinPoint.getTarget().getClass().getName() + " - " + new Date());
 	}
 	
 	/*
@@ -57,6 +56,5 @@ public class TimeLoggingAspect {
 	public void sampleAdviceBefore(JoinPoint joinPoint, String test) throws Throwable {
 		LOGGER.info("@Before: Pre poziva metode - " + joinPoint.getTarget().getClass().getName() + " - " + new Date());
 		System.out.println("Objekat koji se prosledjuje metodi: " + test);
-		LOGGER.info("@Before: Posle poziva metode - " + joinPoint.getTarget().getClass().getName() + " - " + new Date());
 	}
 }

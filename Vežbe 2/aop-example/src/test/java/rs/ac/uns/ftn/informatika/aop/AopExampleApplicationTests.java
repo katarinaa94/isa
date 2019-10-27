@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.informatika.spring.boot;
+package rs.ac.uns.ftn.informatika.aop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
