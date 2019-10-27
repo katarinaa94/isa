@@ -2,8 +2,6 @@ package rs.ac.uns.ftn.informatika.rest.controller;
 
 import java.util.Collection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,8 +28,6 @@ import rs.ac.uns.ftn.informatika.rest.service.GreetingService;
 @RequestMapping("/api/greetings")
 public class GreetingController {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private GreetingService greetingService;
 
@@ -48,11 +44,7 @@ public class GreetingController {
 	 */
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Greeting>> getGreetings() {
-		logger.info("> getGreetings");
-
 		Collection<Greeting> greetings = greetingService.findAll();
-
-		logger.info("< getGreetings");
 		return new ResponseEntity<Collection<Greeting>>(greetings, HttpStatus.OK);
 	}
 
@@ -63,15 +55,11 @@ public class GreetingController {
 	 */
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> getGreeting(@PathVariable("id") Long id) {
-		logger.info("> getGreeting id:{}", id);
-
 		Greeting greeting = greetingService.findOne(id);
 
 		if (greeting == null) {
 			return new ResponseEntity<Greeting>(HttpStatus.NOT_FOUND);
 		}
-
-		logger.info("< getGreeting id:{}", id);
 		return new ResponseEntity<Greeting>(greeting, HttpStatus.OK);
 	}
 
@@ -88,11 +76,7 @@ public class GreetingController {
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> createGreeting(@RequestBody Greeting greeting) throws Exception {
-		logger.info("> createGreeting");
-
 		Greeting savedGreeting = greetingService.create(greeting);
-
-		logger.info("< createGreeting");
 		return new ResponseEntity<Greeting>(savedGreeting, HttpStatus.CREATED);
 	}
 
@@ -102,8 +86,6 @@ public class GreetingController {
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> updateGreeting(@RequestBody Greeting greeting, @PathVariable Long id)
 			throws Exception {
-		logger.info("> updateGreeting id:{}", greeting.getId());
-
 		Greeting greetingForUpdate = greetingService.findOne(id);
 		greetingForUpdate.copyValues(greeting);
 
@@ -112,8 +94,6 @@ public class GreetingController {
 		if (updatedGreeting == null) {
 			return new ResponseEntity<Greeting>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		logger.info("< updateGreeting id:{}", greeting.getId());
 		return new ResponseEntity<Greeting>(updatedGreeting, HttpStatus.OK);
 	}
 
@@ -122,11 +102,7 @@ public class GreetingController {
 	 */
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Greeting> deleteGreeting(@PathVariable("id") Long id) {
-		logger.info("> deleteGreeting id:{}", id);
-
 		greetingService.delete(id);
-
-		logger.info("< deleteGreeting id:{}", id);
 		return new ResponseEntity<Greeting>(HttpStatus.NO_CONTENT);
 	}
 
