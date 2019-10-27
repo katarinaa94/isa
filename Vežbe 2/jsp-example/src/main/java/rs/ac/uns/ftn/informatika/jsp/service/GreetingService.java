@@ -15,5 +15,5 @@ public interface GreetingService {
 	Greeting update(Greeting greeting) throws Exception;
 
 	void delete(Long id);
-
+	
 }
