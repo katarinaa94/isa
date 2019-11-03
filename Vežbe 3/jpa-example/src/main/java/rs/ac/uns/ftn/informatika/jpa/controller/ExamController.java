@@ -3,10 +3,12 @@ package rs.ac.uns.ftn.informatika.jpa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import rs.ac.uns.ftn.informatika.jpa.dto.ExamDTO;
@@ -30,7 +32,7 @@ public class ExamController {
 	@Autowired
 	private CourseService courseService;
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<ExamDTO> createExam(@RequestBody ExamDTO examDTO) {
 
 		// a new exam must have student and course defined
@@ -55,7 +57,7 @@ public class ExamController {
 		return new ResponseEntity<>(new ExamDTO(exam), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	@PutMapping(consumes = "application/json")
 	public ResponseEntity<ExamDTO> updateExam(@RequestBody ExamDTO examDTO) {
 
 		// an exam must exist
@@ -71,7 +73,7 @@ public class ExamController {
 		return new ResponseEntity<>(new ExamDTO(exam), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteExam(@PathVariable Long id) {
 
 		Exam exam = examService.findOne(id);

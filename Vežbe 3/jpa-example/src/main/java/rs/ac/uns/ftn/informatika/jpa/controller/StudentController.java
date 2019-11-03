@@ -9,10 +9,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +33,7 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	@GetMapping(value = "/all")
 	public ResponseEntity<List<StudentDTO>> getAllStudents() {
 
 		List<Student> students = studentService.findAll();
@@ -44,7 +47,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public ResponseEntity<List<StudentDTO>> getStudentsPage(Pageable page) {
 
 		// page object holds data about pagination and sorting
@@ -60,7 +63,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<StudentDTO> getStudent(@PathVariable Long id) {
 
 		Student student = studentService.findOne(id);
@@ -73,7 +76,7 @@ public class StudentController {
 		return new ResponseEntity<>(new StudentDTO(student), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO) {
 
 		Student student = new Student();
@@ -85,7 +88,7 @@ public class StudentController {
 		return new ResponseEntity<>(new StudentDTO(student), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	@PutMapping(consumes = "application/json")
 	public ResponseEntity<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO) {
 
 		// a student must exist
@@ -103,7 +106,7 @@ public class StudentController {
 		return new ResponseEntity<>(new StudentDTO(student), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
 
 		Student student = studentService.findOne(id);
@@ -116,7 +119,7 @@ public class StudentController {
 		}
 	}
 
-	@RequestMapping(value = "/findIndex", method = RequestMethod.GET)
+	@GetMapping(value = "/findIndex")
 	public ResponseEntity<StudentDTO> getStudentByIndex(@RequestParam String index) {
 
 		Student student = studentService.findByIndex(index);
@@ -126,7 +129,7 @@ public class StudentController {
 		return new ResponseEntity<>(new StudentDTO(student), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/findLastName", method = RequestMethod.GET)
+	@GetMapping(value = "/findLastName")
 	public ResponseEntity<List<StudentDTO>> getStudentsByLastName(@RequestParam String lastName) {
 
 		List<Student> students = studentService.findByLastName(lastName);
@@ -139,7 +142,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/prezime", method = RequestMethod.GET)
+	@GetMapping(value = "/prezime")
 	public ResponseEntity<List<StudentDTO>> pronadjiStudentePoPrezimenu(@RequestParam String lastName) {
 
 		List<Student> students = studentService.pronadjiPoPrezimenu(lastName);
@@ -152,7 +155,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/findFirstLast", method = RequestMethod.GET)
+	@GetMapping(value = "/findFirstLast")
 	public ResponseEntity<List<StudentDTO>> getStudentsByFirstNameAndLastName(@RequestParam String firstName,
 			@RequestParam String lastName) {
 
@@ -166,7 +169,7 @@ public class StudentController {
 		return new ResponseEntity<>(studentsDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{studentId}/exams", method = RequestMethod.GET)
+	@GetMapping(value = "/{studentId}/exams")
 	public ResponseEntity<List<ExamDTO>> getStudentExams(@PathVariable Long studentId) {
 		Student student = studentService.findOne(studentId);
 		Set<Exam> exams = student.getExams();

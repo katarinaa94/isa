@@ -7,10 +7,13 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import rs.ac.uns.ftn.informatika.jpa.dto.CourseDTO;
@@ -27,7 +30,7 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public ResponseEntity<List<CourseDTO>> getCourses() {
 
 		List<Course> courses = courseService.findAll();
@@ -41,7 +44,7 @@ public class CourseController {
 		return new ResponseEntity<>(coursesDTO, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<CourseDTO> getCourse(@PathVariable Long id) {
 
 		Course course = courseService.findOne(id);
@@ -54,7 +57,7 @@ public class CourseController {
 		return new ResponseEntity<>(new CourseDTO(course), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<CourseDTO> saveCourse(@RequestBody CourseDTO courseDTO) {
 
 		Course course = new Course();
@@ -64,7 +67,7 @@ public class CourseController {
 		return new ResponseEntity<>(new CourseDTO(course), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	@PutMapping(consumes = "application/json")
 	public ResponseEntity<CourseDTO> updateCourse(@RequestBody CourseDTO courseDTO) {
 
 		// a course must exist
@@ -80,7 +83,7 @@ public class CourseController {
 		return new ResponseEntity<>(new CourseDTO(course), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
 
 		Course course = courseService.findOne(id);
@@ -93,7 +96,7 @@ public class CourseController {
 		}
 	}
 
-	@RequestMapping(value = "/{courseId}/exams", method = RequestMethod.GET)
+	@GetMapping(value = "/{courseId}/exams")
 	public ResponseEntity<List<ExamDTO>> getStudentExams(@PathVariable Long courseId) {
 
 		Course course = courseService.findOne(courseId);
