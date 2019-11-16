@@ -1,0 +1,4 @@
+#Key and value types
+#Sat Nov 16 20:58:53 CET 2019
+keyType=java.lang.Long
+valueType=rs.ac.uns.ftn.informatika.cache.domain.Product
