@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
+import org.springframework.data.repository.query.Param;
 
 import rs.ac.uns.ftn.informatika.tx.domain.Product;
 
@@ -18,6 +19,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 	//Postgres po defaultu poziva for update bez no wait, tako da treba dodati vrednost 0 za timeout
 	//kako bismo dobili PessimisticLockingFailureException ako pri pozivu ove metode torka nije dostupna
 	@QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value ="0")})
-	public Product findOneById(Long id);
+	public Product findOneById(@Param("id")Long id);
 
 }
