@@ -1,8 +1,8 @@
 package rs.ac.uns.ftn.informatika.aop.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class SampleService {
 	
 	/*

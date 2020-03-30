@@ -39,4 +39,4 @@ Primer Spring Boot aplikacije. Ovo je današnji preporučeni način za konfiguri
 
 * importovati projekat u workspace: Import -> Maven -> Existing Maven Project
 * instalirati sve dependency-je iz pom.xml
-* desni klik na projekat -> Run as -> Spring Boot app
+* desni klik na projekat -> Run as -> Java Application / Spring Boot app (ako je instaliran STS plugin sa Eclipse marketplace)

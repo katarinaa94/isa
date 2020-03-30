@@ -9,10 +9,10 @@ public class Greeting {
     /*
      * Jedna u nizu anotacija za validaciju polja sa serverske strane.
      * Prema dokumentaciji: The annotated element must not be null nor empty. Supported types are:
-     * CharSequence (length of character sequence is evaluated)
-     * Collection (collection size is evaluated)
-     * Map (map size is evaluated)
-     * Array (array length is evaluated)
+	     * CharSequence (length of character sequence is evaluated)
+	     * Collection (collection size is evaluated)
+	     * Map (map size is evaluated)
+	     * Array (array length is evaluated)
      */
     @NotEmpty(message = "Poruka je obavezna.")
     private String text;

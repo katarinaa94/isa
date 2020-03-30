@@ -32,9 +32,10 @@ public class GreetingController {
 	private GreetingService greetingService;
 
 	/*
-	 * Prilikom poziva metoda potrebno je navesti nekoliko parametara unutar @@GetMapping anotacije: 
-	 * 	url kao vrednost 'value' atributa (ukoliko se izostavi, ruta do metode je ruta do kontrolera), 
-	 * 	u slucaju GET zahteva atribut 'produce' sa naznakom tipa odgovora (u nasem slucaju JSON).
+	 * Prilikom poziva metoda potrebno je navesti nekoliko parametara
+	 * unutar @@GetMapping anotacije: url kao vrednost 'value' atributa (ukoliko se
+	 * izostavi, ruta do metode je ruta do kontrolera), u slucaju GET zahteva
+	 * atribut 'produce' sa naznakom tipa odgovora (u nasem slucaju JSON).
 	 * 
 	 * Kao povratna vrednost moze se vracati klasa ResponseEntity koja sadrzi i telo
 	 * (sam podatak) i zaglavlje (metapodatke) i status kod, ili samo telo ako se
@@ -60,14 +61,16 @@ public class GreetingController {
 		if (greeting == null) {
 			return new ResponseEntity<Greeting>(HttpStatus.NOT_FOUND);
 		}
+		
 		return new ResponseEntity<Greeting>(greeting, HttpStatus.OK);
 	}
 
 	/*
-	 * Prilikom poziva metoda potrebno je navesti nekoliko parametara unutar @PostMappimng anotacije: 
-	 * 	url kao vrednost 'value' atributa (ukoliko se izostavi, ruta do metode je ruta do kontrolera), 
-	 * 	u slucaju POST zahteva atribut 'produces' sa naznakom tipa odgovora (u nasem slucaju JSON) i 
-	 * 	atribut consumes' sa naznakom oblika u kojem se salje podatak (u nasem slucaju JSON).
+	 * Prilikom poziva metoda potrebno je navesti nekoliko parametara
+	 * unutar @PostMappimng anotacije: url kao vrednost 'value' atributa (ukoliko se
+	 * izostavi, ruta do metode je ruta do kontrolera), u slucaju POST zahteva
+	 * atribut 'produces' sa naznakom tipa odgovora (u nasem slucaju JSON) i atribut
+	 * consumes' sa naznakom oblika u kojem se salje podatak (u nasem slucaju JSON).
 	 * 
 	 * Anotiranjem parametra sa @RequestBody Spring ce pokusati od prosledjenog JSON
 	 * podatka da napravi objekat tipa Greeting.
@@ -94,6 +97,7 @@ public class GreetingController {
 		if (updatedGreeting == null) {
 			return new ResponseEntity<Greeting>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
 		return new ResponseEntity<Greeting>(updatedGreeting, HttpStatus.OK);
 	}
 

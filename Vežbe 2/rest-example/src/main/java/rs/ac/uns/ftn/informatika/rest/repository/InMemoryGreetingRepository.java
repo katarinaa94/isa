@@ -24,10 +24,12 @@ public class InMemoryGreetingRepository implements GreetingRepository {
 	@Override
 	public Greeting create(Greeting greeting) {
 		Long id = greeting.getId();
+
 		if (id == null) {
 			id = counter.incrementAndGet();
 			greeting.setId(id);
 		}
+
 		this.greetings.put(id, greeting);
 		return greeting;
 	}
@@ -45,9 +47,11 @@ public class InMemoryGreetingRepository implements GreetingRepository {
 	@Override
 	public Greeting update(Greeting greeting) {
 		Long id = greeting.getId();
+
 		if (id != null) {
 			this.greetings.put(id, greeting);
 		}
+
 		return greeting;
 	}
 

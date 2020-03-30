@@ -14,13 +14,13 @@ public class GreetingContoller {
 	 * Logika se izvrsava u vremenskim trenucima definisanih cron sintaksom. Vise o cron sintaksi mozete procitati na linku:
 	 * http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
 	 * 
-	 * ${greeting.cron} -> cita se vrednost koja je definisana u application.properties fajlu.
+	 * ${greeting.cron} -> cita se vrednost koja je definisana u src/main/application.properties fajlu.
 	 */
 	@Scheduled(cron = "${greeting.cron}")
 	public void cronJob() {
 		logger.info("> cronJob");
 		
-		// neka logika
+		// neka logika - simuliramo da izvrsavanje metode traje 5000 ms
 		long pause = 5000;
 		long start = System.currentTimeMillis();
 		
@@ -39,12 +39,15 @@ public class GreetingContoller {
 	 * 
 	 * 'fixedRate' se koristi kao indikacija u kojem intervalu ce se pozivati metoda.
 	 * 'initialDelay' se koristi kao indikacija koliko posle pokretanja aplikacije treba da se ceka do prvog pokretanja metode.
+	 * 
+	 * ${greeting.initialdelay} -> cita se vrednost koja je definisana u src/main/application.properties fajlu.
+	 * ${greeting.fixedrate} -> cita se vrednost koja je definisana u src/main/application.properties fajlu.
 	 */
 	@Scheduled(initialDelayString = "${greeting.initialdelay}", fixedRateString = "${greeting.fixedrate}")
 	public void fixedRateJobWithInitialDelay() {
 		logger.info("> fixedRateJobWithInitialDelay");
 		
-		// neka logika
+		// neka logika - simuliramo da izvrsavanje metode traje 5000 ms
 		long pause = 5000;
 		long start = System.currentTimeMillis();
 		
@@ -63,12 +66,15 @@ public class GreetingContoller {
 	 * 
 	 * 'fixedDelay' se koristi kao indikacija vremena koje treba da prodje izmedju izvrsavanja. 
 	 * 'initialDelay' se koristi kao indikacija koliko da se saceka posle startovanja aplikacije sa prvim izvrsavanjem metode.
+	 * 
+	 * ${greeting.initialdelay} -> cita se vrednost koja je definisana u src/main/application.properties fajlu.
+	 * ${greeting.fixeddelay} -> cita se vrednost koja je definisana u src/main/application.properties fajlu.
 	 */
 	@Scheduled(initialDelayString = "${greeting.initialdelay}", fixedDelayString = "${greeting.fixeddelay}")
 	public void fixedDelayJobWithInitialDelay() {
 		logger.info("> fixedDelayJobWithInitialDelay");
 		
-		// neka logika
+		// neka logika - simuliramo da izvrsavanje metode traje 5000 ms
 		long pause = 5000;
 		long start = System.currentTimeMillis();
 		
