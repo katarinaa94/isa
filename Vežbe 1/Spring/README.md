@@ -35,6 +35,11 @@ Primer Spring aplikacije sa automatskom konfiguracijom.
 
 Primer Spring Boot aplikacije. Ovo je današnji preporučeni način za konfigurisanje Spring Boot aplikacija koji će se koristiti u svim narednim primerima.
 
+Kreiranje inicijalnog Spring Boot projekta moguće uraditi na [linku](https://start.spring.io/), gde se može izabrati tip projekta (Maven ili Gradle project - svi primeri za vežbe su Maven projekti), programski jezik (Java), verzija Spring Boot-a (po želji), vrsta arhive (jar ili war), verzija programskog jezika (bar Java 8). Potrebno je popuniti Maven koordinate proizvoljnim informacijama i (opciono) dodati zavisnosti iz dependency liste.
+
+* Uputstvo za kreiranje početnog Spring Boot projekta ručno možete naći [ovde](https://www.youtube.com/watch?v=bDtZvYAT5Sc) i [ovde](https://www.youtube.com/watch?v=E7_a-kB46LU)
+* [Kreiranje Spring Boot projekta pomoću STS plugina u Eclipse IDE](https://dzone.com/articles/creating-a-spring-boot-project-with-eclipse-and-ma)
+
 ###### Pokretanje primera (Eclipse):
 
 * importovati projekat u workspace: Import -> Maven -> Existing Maven Project
