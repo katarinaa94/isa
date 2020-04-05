@@ -7,7 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 
 /*
- * Nacin za pisanje custom baznog repozitorijuma:
+ * Nacin za pisanje custom baznog repozitorijuma umesto koriscenja predefinisanih Spring Data JPA repozitorijuma:
  * 1. Kreira se interfejs koji nasledjuje Repository ili je anotiran sa @Repository
  * 2. Dodaju se metode po izboru ali se mora voditi racuna da njihov potpis odgovara
  * potpisima metoda osnovnih Spring Data interfejsa
