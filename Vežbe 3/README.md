@@ -20,15 +20,15 @@ Spring Boot aplikacije kao podrazumevani ORM koriste ujedno i najpopularniji [Hi
 Podrška za korišćenje [Spring Data JPA](https://spring.io/projects/spring-data-jpa#overview) projekta se može uključiti dodavanjem odgovarajuće zavisnosti u `pom.xml` štikliranjem iste u [starter aplikaciji](https://start.spring.io/) ili ručno:
 ```
         <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
 ```
 Za komunikaciju sa bazom potrebno je uključiti zavisnost za drajver baze (u primeru se koristi Postgres):
 ```
-		<dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+	<dependency>
+        	<groupId>org.postgresql</groupId>
+        	<artifactId>postgresql</artifactId>
         </dependency>
 ```
 Sve dodatne zavisnosti koje zatrebaju za kasniji razvoj moguće je naći na [MVN repository](https://mvnrepository.com/)
