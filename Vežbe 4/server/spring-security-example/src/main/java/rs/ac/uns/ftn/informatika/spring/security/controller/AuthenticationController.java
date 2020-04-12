@@ -1,8 +1,5 @@
 package rs.ac.uns.ftn.informatika.spring.security.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +15,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +38,7 @@ import rs.ac.uns.ftn.informatika.spring.security.service.impl.CustomUserDetailsS
 public class AuthenticationController {
 
 	@Autowired
-	TokenUtils tokenUtils;
+	private TokenUtils tokenUtils;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -52,28 +49,32 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest,
-			HttpServletResponse response) throws AuthenticationException, IOException {
+	// Prvi endpoint koji pogadja korisnik kada se loguje.
+	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
+	@PostMapping("/login")
+	public ResponseEntity<UserTokenState> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest,
+			HttpServletResponse response) {
 
-		final Authentication authentication = authenticationManager
+		// 
+		Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
 						authenticationRequest.getPassword()));
 
-		// Ubaci username + password u kontext
+		// Ubaci korisnika u trenutni security kontekst
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		// Kreiraj token
+		// Kreiraj token za tog korisnika
 		User user = (User) authentication.getPrincipal();
 		String jwt = tokenUtils.generateToken(user.getUsername());
 		int expiresIn = tokenUtils.getExpiredIn();
 
-		// Vrati token kao odgovor na uspesno autentifikaciju
+		// Vrati token kao odgovor na uspesnu autentifikaciju
 		return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
 	}
 
-	@RequestMapping(method = POST, value = "/signup")
-	public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
+	// Endpoint za registraciju novog korisnika
+	@PostMapping("/signup")
+	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
 
 		User existUser = this.userService.findByUsername(userRequest.getUsername());
 		if (existUser != null) {
@@ -83,11 +84,12 @@ public class AuthenticationController {
 		User user = this.userService.save(userRequest);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/refresh", method = RequestMethod.POST)
-	public ResponseEntity<?> refreshAuthenticationToken(HttpServletRequest request) {
+	// U slucaju isteka vazenja JWT tokena, endpoint koji se poziva da se token osvezi
+	@PostMapping(value = "/refresh")
+	public ResponseEntity<UserTokenState> refreshAuthenticationToken(HttpServletRequest request) {
 
 		String token = tokenUtils.getToken(request);
 		String username = this.tokenUtils.getUsernameFromToken(token);

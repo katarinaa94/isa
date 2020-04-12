@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.spring.security.model;
 
+// DTO koji preuzima podatke iz HTML forme za registraciju
 public class UserRequest {
 
 	private Long id;

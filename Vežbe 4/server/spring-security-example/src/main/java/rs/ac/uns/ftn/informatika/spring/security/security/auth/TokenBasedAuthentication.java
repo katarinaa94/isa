@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.spring.security.security.auth;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 
+// Override klasa za autentifikaciju umesto npr. Basic Auth
 public class TokenBasedAuthentication extends AbstractAuthenticationToken {
 
 	private static final long serialVersionUID = 1L;

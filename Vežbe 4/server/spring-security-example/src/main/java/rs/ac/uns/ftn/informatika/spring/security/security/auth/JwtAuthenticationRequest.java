@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.spring.security.security.auth;
 
+// DTO za login
 public class JwtAuthenticationRequest {
 	
     private String username;

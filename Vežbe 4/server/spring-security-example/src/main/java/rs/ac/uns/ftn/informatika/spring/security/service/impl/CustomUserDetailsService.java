@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.spring.security.model.User;
 import rs.ac.uns.ftn.informatika.spring.security.repository.UserRepository;
 
+// Ovaj servis je namerno izdvojen kao poseban u ovom primeru.
+// U opstem slucaju UserServiceImpl klasa bi mogla da implementira UserDetailService interfejs.
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -44,6 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	// Funkcija pomocu koje korisnik menja svoju lozinku
 	public void changePassword(String oldPassword, String newPassword) {
 
+		// Ocitavamo trenutno ulogovanog korisnika
 		Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
 		String username = currentUser.getName();
 
