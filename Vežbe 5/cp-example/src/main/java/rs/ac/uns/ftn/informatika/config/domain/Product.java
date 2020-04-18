@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.informatika.tx.domain;
+package rs.ac.uns.ftn.informatika.config.domain;
 
 import java.io.Serializable;
 
@@ -32,7 +32,8 @@ public class Product implements Serializable {
 		this.origin = origin;
 		this.price = price;
 	}
-	
+
+
 
 	public String getOrigin() {
 		return origin;
