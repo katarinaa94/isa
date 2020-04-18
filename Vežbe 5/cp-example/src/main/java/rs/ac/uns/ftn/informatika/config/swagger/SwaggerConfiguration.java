@@ -32,12 +32,11 @@ public class SwaggerConfiguration {
 	         * select() metoda vraca instancu ApiSelectorBuilder koja
 	         * pruza nacin za kontrolu endpointa koje otkriva Swagger
 	         */
-	        final Docket docket = new Docket(DocumentationType.SWAGGER_2)
+	        return new Docket(DocumentationType.SWAGGER_2)
 	                .apiInfo(apiInfo())
 	                .select()
 	                .paths(apiPaths())
 	                .build();
-	        return docket;
 	    }
 	    
 	    @SuppressWarnings("unchecked")

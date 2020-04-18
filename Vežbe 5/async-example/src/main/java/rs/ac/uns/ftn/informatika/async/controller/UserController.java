@@ -32,6 +32,7 @@ public class UserController {
 
 		//slanje emaila
 		try {
+			System.out.println("Thread id: " + Thread.currentThread().getId());
 			emailService.sendNotificaitionAsync(user);
 		}catch( Exception e ){
 			logger.info("Greska prilikom slanja emaila: " + e.getMessage());
@@ -42,7 +43,7 @@ public class UserController {
 	
 	@PostMapping("/signup/sync")
 	public String signUpSync(User user){
-
+		System.out.println("Thread id: " + Thread.currentThread().getId());
 		//slanje emaila
 		try {
 			emailService.sendNotificaitionSync(user);

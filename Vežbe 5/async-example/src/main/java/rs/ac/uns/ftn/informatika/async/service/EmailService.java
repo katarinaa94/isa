@@ -28,7 +28,7 @@ public class EmailService {
 	 */
 	@Async
 	public void sendNotificaitionAsync(User user) throws MailException, InterruptedException {
-
+		System.out.println("Async metoda se izvrsava u drugom Threadu u odnosu na prihvaceni zahtev. Thread id: " + Thread.currentThread().getId());
 		//Simulacija duze aktivnosti da bi se uocila razlika
 		Thread.sleep(10000);
 		System.out.println("Slanje emaila...");
@@ -44,7 +44,7 @@ public class EmailService {
 	}
 
 	public void sendNotificaitionSync(User user) throws MailException, InterruptedException {
-
+		System.out.println("Sync metoda se izvrsava u istom Threadu koji je i prihvatio zahtev. Thread id: " + Thread.currentThread().getId());
 		//Simulacija duze aktivnosti da bi se uocila razlika
 		Thread.sleep(10000);
 		System.out.println("Slanje emaila...");
