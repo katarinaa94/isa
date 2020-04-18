@@ -1,4 +1,4 @@
-# Vežbe 4 - Spring Security & Application Depoloyment
+# Vežbe 4 - Spring Security & Application Deployment
 
 Dat je primer Spring aplikacije koja koristi _Spring Security_ radni okvir za autentifikaciju i autorizaciju. Klijentska aplikacija je Angular aplikacija.
 
