@@ -1,4 +1,4 @@
-# Vežbe 4 - Spring Security
+# Vežbe 4 - Spring Security & Application Depoloyment
 
 Dat je primer Spring aplikacije koja koristi _Spring Security_ radni okvir za autentifikaciju i autorizaciju. Klijentska aplikacija je Angular aplikacija.
 
@@ -279,3 +279,7 @@ Kada je autentifikacija uspešna, login metoda vraća JWT token u _accessToken_ 
 Ako je sve u redu, odgovor koji ste dobili od servera je sledeći:
 
 ![Server Response](https://i.imgur.com/LbuouKP.png "Server Response")
+
+## Application Deployment
+
+Uputstvo za povezivanje aplikacije sa svim potrebnim alatima možete naći na [linku](https://github.com/katarinaa94/isa-deployment)
