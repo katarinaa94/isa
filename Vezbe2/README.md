@@ -9,7 +9,7 @@ Podrška za aspekte je automatski uključena u Spring Boot aplikacije putem _@Sp
 ###### Materijali koje je neophodno proučiti da bi se primer mogao uspešno ispratiti:
 
 * video predavanja se nalaze na [linku](https://www.youtube.com/watch?v=3KKUP7-o3ps)
-* __AOP.pdf__ iz foldera _Vežbe 2_
+* [AOP.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe2/AOP.pdf) iz foldera _Vezbe2_
 
 ###### Definisanje aspekta
 
@@ -82,7 +82,7 @@ Primer Spring web aplikacije sa JSP stranicama. Pogledati u __pom.xml__ zavisnos
 
 ###### Materijali koje je neophodno proučiti da bi se primer mogao uspešno ispratiti:
 
-* __REST.pdf__ iz foldera _Vežbe 2_
+* [REST.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe2/REST.pdf) iz foldera _Vezbe2_
 
 ###### Struktura primera
 
@@ -180,7 +180,7 @@ Primer se ne razlikuje mnogo od primera sa JSP stranicama. Jedina razlika je u k
 
 ###### Materijali koje je neophodno proučiti da bi se primer mogao uspešno ispratiti:
 
-* __REST.pdf__ iz foldera _Vežbe 2_
+* [REST.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe2/REST.pdf) iz foldera _Vezbe2_
 
 ###### Struktura primera
 

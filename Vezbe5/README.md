@@ -1,3 +1,5 @@
+# Vežbe 5
+
 ## cp-example
 
 Aplikacije često moraju da koriste resurse koji su skupi za kreiranje i održavanje (npr. konekcije za pristup bazi, niti, itd).
