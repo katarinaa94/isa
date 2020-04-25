@@ -110,6 +110,7 @@ public class ProductService {
 Šta se u stvari ovde dešava?
 Kako je Spring [IoC kontejner](https://martinfowler.com/articles/injection.html) a `ProductService` je anotiran sa `@Service`, time je u stvari `ProductService` klasa registrovana kao komponenta Spring kontejnera koji upravlja njome kroz ceo njen životni ciklus. Kada se `ProductService` injektuje u drugu komponentu pomoću `@Autowired`, Spring ne samo da instancira tu komponentu već kreira i [**transakcioni proxy**](https://docs.spring.io/spring/docs/3.0.0.M3/reference/html/ch08s06.html) te komponente koji započinje transakciju pomoću transakcionog menadžera, zatim delegira posao `save` metodi `ProductService` klase koja obavi sve što je predviđeno i zatim, kada mu se vrati kontrola, pomoću transakcionog menadžera završava transakciju (commit, rollback).
 ![AOP Proxy](https://docs.spring.io/spring/docs/3.0.0.M3/reference/html/images/tx.png "AOP Proxy")
+
 (Slika preuzeta sa [Declarative transaction management](https://docs.spring.io/spring/docs/3.0.0.M3/reference/html/ch11s05.html))
 
 #### Nivoi propagacije
