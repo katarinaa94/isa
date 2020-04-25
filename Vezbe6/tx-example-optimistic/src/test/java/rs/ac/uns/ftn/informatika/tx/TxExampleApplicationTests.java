@@ -1,6 +1,9 @@
 package rs.ac.uns.ftn.informatika.tx;
 
-import static org.junit.Assert.assertEquals;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +20,8 @@ import rs.ac.uns.ftn.informatika.tx.service.ProductService;
 @SpringBootTest
 public class TxExampleApplicationTests {
 	
-	@Autowired
+	
+    @Autowired
 	private ProductService productService;
 
 	@Before
@@ -30,24 +34,57 @@ public class TxExampleApplicationTests {
 	}
 
 	@Test(expected = ObjectOptimisticLockingFailureException.class)
-	public void testOptimisticLockingScenario() {
+	public void testOptimisticLockingScenario() throws Throwable {	
 
-		Product productForUserOne = productService.findById(1L);
-		Product productForUserTwo = productService.findById(1L);
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		Future<?> future1 = executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+		        System.out.println("Startovan Thread 1");
+				Product productToUpdate = productService.findById(1L);// ocitan objekat sa id 1
+				productToUpdate.setPrice(800L);// izmenjen ucitan objekat
+				try { Thread.sleep(3000); } catch (InterruptedException e) {}// thread uspavan na 3 sekunde da bi drugi thread mogao da izvrsi istu operaciju
+				productService.save(productToUpdate);// bacice ObjectOptimisticLockingFailureException
+				
+			}
+		});
+		executor.submit(new Runnable() {
+			
+			@Override
+			public void run() {
+		        System.out.println("Startovan Thread 2");
+				Product productToUpdate = productService.findById(1L);// ocitan isti objekat sa id 1 kao i iz prvog threada
+				productToUpdate.setPrice(900L);// izmenjen ucitan objekat
+				/*
+				 * prvi ce izvrsiti izmenu i izvrsi upit:
+				 * Hibernate: 
+				 *     update
+				 *         product
+				 *     set
+				 *         name=?,
+        		 *         origin=?,
+                 *         price=?,
+                 *         version=? 
+                 *     where
+                 *         id=? 
+                 *         and version=?
+                 *         
+                 * Moze se primetiti da automatski dodaje na upit i proveru o verziji
+				 */
+				productService.save(productToUpdate);
+			}
+		});
+		try {
+		    future1.get(); // podize ExecutionException za bilo koji izuzetak iz prvog child threada
+		} catch (ExecutionException e) {
+		    System.out.println("Exception from thread " + e.getCause().getClass()); // u pitanju je bas ObjectOptimisticLockingFailureException
+		    throw e.getCause();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		executor.shutdown();
 
-		//modifikovanje istog objekta
-		productForUserOne.setPrice(800L);
-		productForUserTwo.setPrice(900L);
-
-		//verzija oba objekta je 0
-		assertEquals(0, productForUserOne.getVersion().intValue());
-		assertEquals(0, productForUserTwo.getVersion().intValue());
-
-		//pokusaj cuvanja prvog objekta
-		productService.save(productForUserOne);
-
-		//pokusaj cuvanja drugog objekta - Exception!
-		productService.save(productForUserTwo);
 	}
 
 }

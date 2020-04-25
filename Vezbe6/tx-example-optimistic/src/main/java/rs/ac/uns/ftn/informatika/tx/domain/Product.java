@@ -30,7 +30,7 @@ public class Product implements Serializable {
 	 * - poredi se verzija podatka koju je klijent procitao sa onim sto se trenutno nalazi u bazi
 	 * - poredjenje se vrsi pri commit-u transakcije (normal validation)
 	 *   ili pri svakom pisanju u bazu u toku transakcije (early validation)
-	 * - ako su podaci menjani prijavlje se greska korisniku
+	 * - ako su podaci menjani prijavljuje se greska korisniku
 	 */
 	@Version
 	private Long version;
