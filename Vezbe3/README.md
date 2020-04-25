@@ -10,7 +10,7 @@ Za potrebe razumevanja primera potrebno je prethodno odgledati predavanja:
 * [ORM: Mapiranje nasleđivanja](https://www.youtube.com/watch?v=KMKmYUnzPqM)
 * [ORM: izbor primarnih ključeva](https://www.youtube.com/watch?v=D7Ae7qENK98)
 
-i pročitati [OR-mapiranje.pdf](https://github.com/katarinaa94/isa/blob/master/Ve%C5%BEbe%203/OR-mapiranje.pdf) iz foldera Vežbe03.
+i pročitati [OR-mapiranje.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe3/OR-mapiranje.pdf) iz foldera _Vezbe3_.
 
 Takođe, u primeru se koristi [Postgres RDBMS](https://www.postgresql.org/) koji treba instalirati zajedno sa GUI okruženjem (pgAdmin Workbench) za lakši rad. Uputstva za instalaciju možete pronaći [ovde](https://www.youtube.com/watch?v=e1MwsT5FJRQ), [ovde](https://www.postgresql.org/docs/9.5/index.html) i [ovde](https://lmgtfy.com/?q=how+to+install+postgresql).
 
@@ -77,8 +77,8 @@ Ono što se očekuje od studenata je da za svoj projekat kreiraju i skriptu za p
 Model podataka koji se koriste u prilogu izgleda kao na slici:
 ![ISA model jpa-example](https://i.imgur.com/SUpm4Z1.jpg  "jpa-example db model")
 
+U primeru je prikazana tipična [višeslojna arhitektura](https://www.petrikainulainen.net/software-development/design/understanding-spring-web-application-architecture-the-classic-way/) serverske strane monolitne Spring Boot aplikacije koja ima sledeće komponente (objašnjene u primerima jsp-example i rest-example u folderu _Vezbe2_):
 
-U primeru je prikazana tipična [višeslojna arhitektura](https://www.petrikainulainen.net/software-development/design/understanding-spring-web-application-architecture-the-classic-way/) serverske strane monolitne Spring Boot aplikacije koja ima sledeće komponente (objašnjene u primerima jsp-example i rest-example u folderu Vežbe02):
 * [POJO entiteti](https://www.baeldung.com/java-pojo-class), za koje je izabrana **IDENTITY** strategija generisanja ključeva, koji se mapiraju na tabele u bazi u paketu __model__
 * [Repozitorijumski interfejsi](https://thoughts-on-java.org/implementing-the-repository-pattern-with-jpa-and-hibernate/) koji predstavljaju ugovor koji Spring Data JPA zahteva da se napravi sa developerom da bi developer napisao uputstvo (upite) za komunikaciju sa bazom podataka u paketu __repository__
 * [Servisne metode](https://martinfowler.com/eaaCatalog/serviceLayer.html) koje predstavljaju poslovnu logiku aplikacije (funkcionalnosti koje želimo klijentima da omogućimo da koriste) u paketu __service__
