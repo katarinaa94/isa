@@ -4,6 +4,7 @@
 
 Za potrebe razumevanja primera potrebno je prethodno odgledati predavanja:
 
+* [JDBC uvod](https://www.youtube.com/watch?v=xH9d3ZYUn6c)
 * [ORM: Uvod](https://www.youtube.com/watch?v=D31s6wwtAjM)
 * [ORM: životni ciklus perzistentnih objekata](https://www.youtube.com/watch?v=0cgPpAfHTVg)
 * [ORM: asocijacije između perzistentnih klasa](https://www.youtube.com/watch?v=mlHJBgt5Os4)
