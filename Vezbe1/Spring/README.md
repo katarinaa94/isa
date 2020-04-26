@@ -9,6 +9,12 @@ Kada učitamo Maven projekat u workspace, sve biblioteke od kojih naš prjekat z
 
 Kada dodate novu zavisnost u pom.xml, na snimanje izmena će se automatski pokrenuti uvezivanje zavisnosti sa projektom. Ukoliko se to ne desi, pokrenuti ručno uvezivanje zavisnosti sa projektom.
 
+###### Materijali koje je neophodno proučiti da bi se primer mogao uspešno ispratiti:
+
+* [Opseg i životni ciklus serverskih komponenti](https://www.youtube.com/watch?v=AMQcujPq8Wg)
+* [Dependency Injection](https://www.youtube.com/watch?v=XjgA8vZ-TcM)
+* [Spring.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe1/Spring/Spring.pdf) iz foldera _Vezbe1_
+
 ## springapp-xml-configuration
 
 Primer Spring aplikacije sa XML konfiguracijom.
