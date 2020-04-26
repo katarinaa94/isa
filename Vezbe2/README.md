@@ -82,6 +82,7 @@ Primer Spring web aplikacije sa JSP stranicama. Pogledati u __pom.xml__ zavisnos
 
 ###### Materijali koje je neophodno proučiti da bi se primer mogao uspešno ispratiti:
 
+* [Arhitekture klasičnih i savremenih web aplikacija](https://www.youtube.com/watch?v=XnEnUtSw8Rc)
 * [REST.pdf](https://github.com/katarinaa94/isa/blob/master/Vezbe2/REST.pdf) iz foldera _Vezbe2_
 
 ###### Struktura primera
