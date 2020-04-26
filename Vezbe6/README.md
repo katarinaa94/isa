@@ -245,6 +245,7 @@ Prema Postgres [dokumentaciji](https://www.postgresql.org/docs/9.3/errcodes-appe
 - [Data Access](https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html)
 - [A beginner’s guide to database locking and the lost update phenomena](https://vladmihalcea.com/a-beginners-guide-to-database-locking-and-the-lost-update-phenomena/)
 - [LockMode and LockModeType](https://docs.jboss.org/hibernate/orm/5.0/userguide/html_single/Hibernate_User_Guide.html#locking-LockMode)
+- [How to Avoid Double Booking and Race Conditions in Online Web Applications](https://www.youtube.com/watch?v=_95dCYv2Xv4)
 
 ## Pokretanje Spring aplikacije (Eclipse)
 
