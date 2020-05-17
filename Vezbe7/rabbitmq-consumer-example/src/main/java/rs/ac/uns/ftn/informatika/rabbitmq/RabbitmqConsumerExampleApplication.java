@@ -20,10 +20,9 @@ public class RabbitmqConsumerExampleApplication {
 	 * gde se mi u primeru kacimo u lokalu.
 	 */
 	@Bean
-    public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory =
-                new CachingConnectionFactory("localhost");
-        return connectionFactory;
-    }
+	public ConnectionFactory connectionFactory() {
+		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+		return connectionFactory;
+	}
 	
 }

@@ -20,5 +20,11 @@ public class ProducerController {
 		producer.sendTo(queue, message);
 		return ResponseEntity.ok().build();
 	}
+	
+	@PostMapping(value="/{exchange}/{queue}", consumes = "text/plain")
+	public ResponseEntity<String> sendMessageToExchange(@PathVariable("exchange") String exchange, @PathVariable("queue") String queue, @RequestBody String message) {
+		producer.sendToExchange(exchange, queue, message);
+		return ResponseEntity.ok().build();
+	}
 
 }
