@@ -40,11 +40,10 @@ export class SocketComponent implements OnInit {
     this.initializeWebSocketConnection();
   }
 
+  // Funkcija za otvaranje konekcije sa serverom
   initializeWebSocketConnection() {
-
-    // otvaranje konekcije sa serverom
     // serverUrl je vrednost koju smo definisali u registerStompEndpoints() metodi na serveru
-    let ws = new SockJS(this.serverUrl); 
+    let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
 
@@ -55,6 +54,7 @@ export class SocketComponent implements OnInit {
 
   }
 
+  // Funkcija salje poruku na WebSockets endpoint na serveru
   sendMessageUsingSocket() {
     if (this.form.valid) {
       let message: Message = {
@@ -64,12 +64,13 @@ export class SocketComponent implements OnInit {
       };
 
       // Primer slanja poruke preko web socketa sa klijenta. URL je 
-      //  - ApplicationDestinationPrefix definisan u config klasi na serveru (configureMessageBroker() metoda)
-      //  - vrednost @MessageMapping anotacije iz kontrolera na serveru 
+      //  - ApplicationDestinationPrefix definisan u config klasi na serveru (configureMessageBroker() metoda) : /socket-subscriber
+      //  - vrednost @MessageMapping anotacije iz kontrolera na serveru : /send/message
       this.stompClient.send("/socket-subscriber/send/message", {}, JSON.stringify(message));
     }
   }
 
+  // Funckija salje poruku na REST endpoint na serveru
   sendMessageUsingRest() {
     if (this.form.valid) {
       let message: Message = {
@@ -84,31 +85,31 @@ export class SocketComponent implements OnInit {
     }
   }
 
+  // Funckija za pretplatu na topic /socket-publisher (definise se u configureMessageBroker() metodi)
+  // Globalni socket se otvara prilikom inicijalizacije klijentske aplikacije
   openGlobalSocket() {
     if (this.isLoaded) {
-      // pretplata na topic /socket-publisher (definise se u configureMessageBroker() metodi)
       this.stompClient.subscribe("/socket-publisher", (message: { body: string; }) => {
         this.handleResult(message);
       });
     }
   }
 
+  // Funkcija za pretplatu na topic /socket-publisher/user-id
+  // CustomSocket se otvara kada korisnik unese svoj ID u polje 'fromId' u submit callback-u forme 'userForm'
   openSocket() {
     if (this.isLoaded) {
       this.isCustomSocketOpened = true;
-
-      // pretplata na topic /socket-publisher/specificni_user
       this.stompClient.subscribe("/socket-publisher/" + this.userForm.value.fromId, (message: { body: string; }) => {
         this.handleResult(message);
       });
     }
   }
 
-  // funkcija koja se poziva kada server posalje poruku na topic na koji se klijent pretplatio
+  // Funkcija koja se poziva kada server posalje poruku na topic na koji se klijent pretplatio
   handleResult(message: { body: string; }) {
     if (message.body) {
       let messageResult: Message = JSON.parse(message.body);
-      console.log(messageResult);
       this.messages.push(messageResult);
       this.toastr.success("new message recieved", null, {
         'timeOut': 3000
