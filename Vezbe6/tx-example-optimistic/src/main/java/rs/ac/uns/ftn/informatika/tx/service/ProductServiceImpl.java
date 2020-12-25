@@ -36,7 +36,7 @@ import rs.ac.uns.ftn.informatika.tx.repository.ProductRepository;
  * 					6. NEVER - metoda se izvrsava bez tranksacije; ako postoji tekuca transakcija, javlja se greska
  * 					7. NESTED - metoda se izvrsava u ugnjezdenoj transakciji ako je trenutni thread povezan sa transakcijom u suprotnom startuje novu transakciju
  * - isolation - moze se definisati drugaciji nivo izolacije u odnosu na podrazumevani za odgovarajucu bazu:
- * 					1. READ_UNCOMMITTED - eliminise problem "lost update"
+ * 					1. READ_UNCOMMITTED - prakticno deprecated
  * 					2. READ_COMMITED - eliminise problem "dirty read"
  * 					3. REPEATABLE_READ - eliminise problem "unrepeatable read"
  * 					4. SERIALIZABLE - eliminise problem "phantom read"
